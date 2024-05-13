@@ -13,16 +13,16 @@ class _ToDoPageState extends State<ToDoPage> {
   
   final tasks = [
     {
-      'finished' : false,
-      'description' : 'tâche 1'
+      'finished' : 'false',
+      'description' : "tâche 1"
     },
     {
-      'finished' : false,
-      'description' : 'tâche 2'
+      'finished' : 'false',
+      'description' : "tâche 2"
     },
     {
-      'finished' : true,
-      'description' : 'tâche 3'
+      'finished' : 'true',
+      'description' : "tâche 3"
     }
     ];
   
@@ -38,15 +38,15 @@ class _ToDoPageState extends State<ToDoPage> {
         child: Center(
           child: ListView.builder(
             itemCount: tasks.length,
-            itemBuilder: (context, index) {  
+            itemBuilder: (context, index) {
               final task = tasks[index];
-              final taskCompletion = task['finished'];
-              final taskDescription = task['description'];
+              final taskCompletion = bool.parse(task['finished'] as String);
+              final taskDescription = task['description'] as String;
               
-              return const Card(
+              return Card(
                 child: ListTile(
-                  leading: Icon(Icons.check_box),
-                  title: Text('$taskDescription'),
+                  leading: taskCompletion ? const Icon(Icons.check_box) : const Icon(Icons.check_box_outline_blank),
+                  title: Text(taskDescription),
                 ),
               );
             },
